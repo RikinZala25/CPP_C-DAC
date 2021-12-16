@@ -38,7 +38,6 @@ class student
     void search();
     void print();
 };
-int get_stud(student*, int);
 void student::add_new()
 {
     int i;
@@ -53,21 +52,18 @@ void student::add_new()
         cin>>marks[i];
     }
 }
-// void student::del()
-// {
-//     roll_no = 0;
-// }
-// void student::mod()
-// {
-//     int temp_roll;
-
-//     cout<<"Enter Roll Num: ";
-//     cin>>temp_roll;
-// }
-// void student::search()
-// {  
-    
-// }
+void student::del()
+{
+    // NO need to decleare anything here case 2 contains all    
+}
+void student::mod()
+{
+    // NO need to decleare anything here case 3 contains all 
+}
+void student::search()
+{  
+    // NO need to decleare anything here case 4 contains all
+}
 void student::print()
 {
     int i;
@@ -80,26 +76,26 @@ void student::print()
     
     if(average>=90)
     {
-        grade="A";
+        grade='A';
     }
     else if(average>=80)
     {
-        grade="B";
+        grade='B';
     }
     else if(average>=40)
     {
-        grade="C";
+        grade='C';
     }
     else if(average<40)
     {
-        grade="O";
+        grade='O';
     }
     cout<<stud_name<<'\t'<<roll_no<<'\t'<<marks[0]<<'\t'<<marks[1]<<'\t'<<marks[2]<<'\t'<<marks[3]<<'\t'<<marks[4]<<'\t'<<average<<'\t'<<grade<<endl;
 }
 int main()
 {
     student s[10];
-    int a,b,i,n,c;
+    int a,b,i,n,c,x;
     cout<<"Enter Entries: ";
     cin>>n;
     for(i=0;i<n;i++)
@@ -111,56 +107,90 @@ int main()
     cin>>a;
     switch (a)
     {
-    // case 1:
-    //     int n_e;
-    //     cout<<"Number of entities to input: ";
-    //     cin>>n_e;
-    //     for(i=n;i<n+n_e;i++)
-    //     {
-    //         s[n+i].add_new();
-    //     }
-    //     break;
+    case 1:
+        int n_e;
+        cout<<"Number of entities to input: ";
+        cin>>n_e;
+        for(i=n;i<n+n_e;i++)
+        {
+            s[n+i].add_new();
+        }
+        cout<<"Name"<<'\t'<<"Roll"<<'\t'<<"S1"<<'\t'<<"S2"<<'\t'<<"S3"<<'\t'<<"S4"<<'\t'<<"S5"<<'\t'<<"Avg"<<'\t'<<"Grade"<<endl;
+        for(i=0;i<n;i++)
+        {
+            s[i].print();
+        } 
+        for(i=n;i<n+n_e;i++)
+        {
+            s[n+i].print();   
+        }
+        break;
     
-    // case 2:
-    // {
-    //     int n_d;
-    //     cout<<"Enter Roll Number to delete entity: ";
-    //     cin>>n_d;;
+    case 2:
+    {
+        int n_d,a;
+        cout<<"Enter Roll Number to delete entity: ";
+        cin>>n_d;;
 
-    //     if(n_d==s[i].roll_no)
-    //     {
-    //         s[i].del();
-    //     }
-    //     break;
-    // }
+        cout<<"Name"<<'\t'<<"Roll"<<'\t'<<"S1"<<'\t'<<"S2"<<'\t'<<"S3"<<'\t'<<"S4"<<'\t'<<"S5"<<'\t'<<"Avg"<<'\t'<<"Grade"<<endl;
+        for(i=0;i<n;i++)
+        {
+            if(n_d==s[i].roll_no)
+            {
+                s[i].roll_no = 0;
+                if(s[i].roll_no!=0)
+                {
+                    s[i].print();
+                }
+            }
+            else
+            {
+                s[i].print();
+            }
+        }
+        break;
+    }
 
-    // case 3:
-    // {
-    //     int n_m;
-    //     cout<<"Enter Roll Number to Modify: ";
-    //     cin>>n_m;
+    case 3:
+    {
+        int n_m,z;
+        cout<<"Enter Roll Number to Modify: ";
+        cin>>n_m;
 
-    //     if(n_m==s[i].roll_no)
-    //     {
-    //         s[i].mod();
-    //     }
-    //     break;
-    // }
+        for(i=0;i<n;i++)
+        {
+            if(n_m-1==s[i].roll_no)
+            {
+                z = n_m-1;
+                for(i=0;i<5;i++)
+                {
+                    cout<<"Enter S["<<i<<"]: "<<endl;
+                    cin>>s[z].marks[i];
+                } 
+            }
+        }
+        for(i=0;i<n;i++)
+        { 
+            s[i].print();
+        }
+        break;
+    }
 
-    // case 4:
-    // {
-    //     int n_s;
-    //     cout<<"Enter Roll Number to Search: ";
-    //     cin>>n_s;
-    //     for(i=0;i<n;i++)
-    //     {
-    //         if(n_s == s[i].roll_no)
-    //         {
-    //             s[i].print();
-    //         }
-    //     }
-    //     break;
-    // }
+    case 4:
+    {
+        int n_s;
+        cout<<"Enter Roll Number to Search: ";
+        cin>>n_s;
+        for(i=0;i<n;i++)
+        {
+            if(n_s == s[i].roll_no)
+            {
+                s[i].print();
+            }
+        }
+        break;
+    }
+
     case 5:
     {
         cout<<"Name"<<'\t'<<"Roll"<<'\t'<<"S1"<<'\t'<<"S2"<<'\t'<<"S3"<<'\t'<<"S4"<<'\t'<<"S5"<<'\t'<<"Avg"<<'\t'<<"Grade"<<endl;
@@ -169,9 +199,12 @@ int main()
             s[i].print();
         } 
     }
+
     default:
         break;
+
     }
+    
     cout<<"\nDo you want to continue?(1 - yes, 2 - no): ";
     cin>>c;
     if(c==1)
@@ -182,5 +215,6 @@ int main()
     {
         return 0;
     }
+    
     return 0;
 }
